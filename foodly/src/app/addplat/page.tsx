@@ -7,14 +7,16 @@ import { useAuthStore } from "@/context/context";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [isLoading, setisLoading] = useState<boolean>(false);
   const { isLoggedIn } = useAuthStore();
-  const router = useRouter();
   useEffect(() => {
     if (!isLoggedIn) {
       router.push("/login");
     }
   }, [isLoggedIn]);
+  const [isLoading, setisLoading] = useState<boolean>(false);
+
+  const router = useRouter();
+
   const popRef = useRef<HTMLDivElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
   const [plate, setPlate] = useState<IPlate>({
