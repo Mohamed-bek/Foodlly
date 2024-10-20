@@ -7,6 +7,7 @@ import { useAuthStore } from "@/context/context";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   const { isLoggedIn } = useAuthStore();
   useEffect(() => {
     if (!isLoggedIn) {
@@ -14,8 +15,6 @@ const Page = () => {
     }
   }, [isLoggedIn]);
   const [isLoading, setisLoading] = useState<boolean>(false);
-
-  const router = useRouter();
 
   const popRef = useRef<HTMLDivElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
