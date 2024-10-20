@@ -12,10 +12,13 @@
     "skipLibCheck": true                      // Skip type checking for all declaration files
   },
   "include": [
-    "server.ts",                              // Include your main server file
-    "models/**/*",                            // Include models folder
-    "middelware/**/*"                         // Include middleware folder
-  ],
+    "server.ts",                              // Your main server file
+    "models/**/*",                            // Includes models folder
+    "controllers/**/*",                       // Make sure this is added
+    "routes/**/*",
+    "middelware/**/*",
+    "Utilitis/**/*"                        // Make sure this is added
+],
   "exclude": [
     "node_modules",                           // Exclude node_modules
     "**/*.spec.ts"                            // Optionally exclude test files
