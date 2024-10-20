@@ -6,10 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
-app.get("/api/foodly", (req, res) => {
+app.use((req, res, next) => {
+    console.log(`Received request for: ${req.originalUrl}`);
+    next();
+});
+app.get("/", (req, res) => {
     res.json({ message: "Welcome to the Foodly API!" });
 });
-// Add more routes as needed
+// Add other routes if needed
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
