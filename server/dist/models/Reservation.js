@@ -56,4 +56,3 @@ const ReservationSchema = new mongoose_1.Schema({
 }, { timestamps: true });
 const Reservation = mongoose_1.default.model("Reservation", ReservationSchema);
 exports.default = Reservation;
-//# sourceMappingURL=Reservation.js.map

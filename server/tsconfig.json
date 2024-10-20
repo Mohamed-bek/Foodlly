@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "NodeNext",                     // Use NodeNext for module generation
+    "module": "NodeNext",                     // Change to NodeNext
+    "moduleResolution": "NodeNext",           // Keep this as NodeNext
     "rootDir": "./",                          // Set the root directory for input files
     "outDir": "./dist",                       // Output directory for compiled files
-    "moduleResolution": "NodeNext",           // Use NodeNext for module resolution
     "esModuleInterop": true,                  // Enables emit interoperability between CommonJS and ES Modules
     "forceConsistentCasingInFileNames": true, // Ensures consistent casing in imports
     "strict": true,                           // Enable strict type checking options
@@ -13,10 +13,12 @@
   },
   "include": [
     "server.ts",                              // Include your main server file
-    "routes/**/*"                             // Include all files in routes folder
+    "models/**/*",                            // Include models folder
+    "middelware/**/*"                         // Include middleware folder
   ],
   "exclude": [
     "node_modules",                           // Exclude node_modules
     "**/*.spec.ts"                            // Optionally exclude test files
   ]
 }
+

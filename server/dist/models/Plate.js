@@ -75,4 +75,3 @@ const platSchema = new mongoose_1.Schema({
 platSchema.index({ isMain: 1 });
 const Plat = mongoose_1.default.model("Plat", platSchema);
 exports.default = Plat;
-//# sourceMappingURL=Plate.js.map
