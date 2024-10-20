@@ -3,11 +3,10 @@ import React, { useState, FormEvent, useRef, useEffect } from "react";
 import { IPlate } from "@/components/Hero"; // Adjust import path as necessary
 import axios from "axios";
 import { IoMdAdd } from "react-icons/io";
-import { Mosaic } from "react-loading-indicators";
 import { useAuthStore } from "@/context/context";
 import { useRouter } from "next/navigation";
 
-const Page = ({ params }: { params: any }) => {
+const Page = () => {
   const [isLoading, setisLoading] = useState<boolean>(false);
   const { isLoggedIn } = useAuthStore();
   const router = useRouter();
@@ -55,16 +54,12 @@ const Page = ({ params }: { params: any }) => {
     try {
       // Send the combined data to your endpoint
       setisLoading(true);
-      const response = await axios.post(
-        "https://foodlly-ozos.vercel.app/plat",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
-        }
-      );
+      await axios.post("https://foodlly-ozos.vercel.app/plat", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
       setPlate({
         name: "",
         subName: "",
