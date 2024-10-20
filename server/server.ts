@@ -3,8 +3,8 @@ import express from "express";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
+app.get("/api/foodly", (req, res) => {
+  res.json({ message: "Welcome to the Foodly API!" });
 });
 
 // Add more routes as needed
