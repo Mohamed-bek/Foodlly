@@ -1,19 +1,18 @@
-import { Request, Response } from "express";
-import Order from "../models/Order";
-import Plat from "../models/Plate";
+import { Order } from "../models/Order.js";
+import { Plat } from "../models/Plate.js";
 
-export const makeOrder = async (req: Request, res: Response) => {
+export const makeOrder = async (req, res) => {
   try {
     const { order, location, name, phone } = req.body;
 
     if (!order || !Array.isArray(order) || order.length === 0) {
-      throw Error("Order items are required");
+      throw new Error("Order items are required");
     }
-    const plateIds = order.map((item: any) => item.plat);
+    const plateIds = order.map((item) => item.plat);
     const foundPlates = await Plat.find({ _id: { $in: plateIds } });
 
     if (foundPlates.length !== plateIds.length) {
-      throw Error("Some plates do not exist");
+      throw new Error("Some plates do not exist");
     }
     const newOrder = new Order({ order, location, name, phone });
     await newOrder.save();
@@ -26,7 +25,7 @@ export const makeOrder = async (req: Request, res: Response) => {
   }
 };
 
-export const getOrders = async (req: Request, res: Response) => {
+export const getOrders = async (req, res) => {
   try {
     const startOfDay = new Date();
     startOfDay.setHours(0, 0, 0, 0);
@@ -42,12 +41,12 @@ export const getOrders = async (req: Request, res: Response) => {
     });
 
     res.status(200).json({ orders });
-  } catch (error: any) {
+  } catch (error) {
     res.status(error.status || 500).json({ error: error.message });
   }
 };
 
-export const deleteOrder = async (req: Request, res: Response) => {
+export const deleteOrder = async (req, res) => {
   try {
     const { id } = req.params;
     const order = await Order.findById(id);
@@ -55,13 +54,13 @@ export const deleteOrder = async (req: Request, res: Response) => {
       throw new Error("Order not found");
     }
     await order.deleteOne();
-    res.status(200).json({ message: "order deleted successfully" });
-  } catch (error: any) {
-    res.status(error.status | 500).json({ error });
+    res.status(200).json({ message: "Order deleted successfully" });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
   }
 };
 
-export const confirmOrder = async (req: Request, res: Response) => {
+export const confirmOrder = async (req, res) => {
   try {
     const { id } = req.params;
     const order = await Order.findById(id);
@@ -70,13 +69,13 @@ export const confirmOrder = async (req: Request, res: Response) => {
     }
     order.isConfirmed = true;
     await order.save();
-    res.status(200).json({ message: "order confirmed successfully" });
-  } catch (error: any) {
-    res.status(error.status | 500).json({ error });
+    res.status(200).json({ message: "Order confirmed successfully" });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
   }
 };
 
-export const getOrder = async (req: Request, res: Response) => {
+export const getOrder = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -88,10 +87,11 @@ export const getOrder = async (req: Request, res: Response) => {
 
     if (!order) {
       res.status(404).json({ message: "Order not found" });
+      return; // Ensure we exit the function
     }
 
     res.status(200).json({ order });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching order:", error);
     res.status(500).json({ message: "Internal server error" });
   }

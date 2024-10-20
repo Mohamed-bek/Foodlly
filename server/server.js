@@ -1,14 +1,14 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import PlatRouter from "./routes/PlatRouter";
-import AdminRouter from "./routes/AdminRouter";
+import PlatRouter from "./routes/PlatRouter.js";
+import AdminRouter from "./routes/AdminRouter.js";
 import cookieParser from "cookie-parser";
-import OrderRouter from "./routes/OrderRouter";
+import OrderRouter from "./routes/OrderRouter.js";
 
 import { v2 as cloudinary } from "cloudinary";
 import cors from "cors";
-import ReservationRouter from "./routes/ReservationRouter";
+import ReservationRouter from "./routes/ReservationRouter.js";
 
 // Use CORS middleware
 
@@ -44,7 +44,7 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Example route
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.send("Welcome to Foodly API!");
 });
 
@@ -52,22 +52,3 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
 });
-
-// import Admin from "./models/Admin"; // Adjust path accordingly
-
-// async function createAdmin() {
-//   const admin = new Admin({
-//     username: "admin",
-//     password: "secure-password",
-//     email: "admin@example.com",
-//   });
-
-//   try {
-//     await admin.save();
-//     console.log("Admin created successfully!");
-//   } catch (error) {
-//     console.error("Error creating admin:", error);
-//   }
-// }
-
-// createAdmin();

@@ -1,25 +1,11 @@
-import mongoose, { Document, Schema, Model } from "mongoose";
-import { IPlat } from "./Plate";
+import mongoose, { Schema, model } from "mongoose";
 
-export interface IOrderItem extends Document {
-  plat: IPlat;
-  quantity: number;
-}
-
-export interface IOrder extends Document {
-  order: IOrderItem[];
-  name: string;
-  phone: string;
-  location: string;
-  isConfirmed: boolean;
-}
-
-const orderItemSchema = new Schema<IOrderItem>({
+const orderItemSchema = new Schema({
   plat: { type: Schema.Types.ObjectId, ref: "Plat", required: true },
   quantity: { type: Number, required: true, min: 1 },
 });
 
-const orderSchema = new Schema<IOrder>(
+const orderSchema = new Schema(
   {
     order: { type: [orderItemSchema], required: true },
     name: {
@@ -39,10 +25,7 @@ const orderSchema = new Schema<IOrder>(
       default: false,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Order: Model<IOrder> = mongoose.model<IOrder>("Order", orderSchema);
-export default Order;
+export const Order = model("Order", orderSchema);

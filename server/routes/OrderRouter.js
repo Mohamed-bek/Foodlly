@@ -5,8 +5,8 @@ import {
   getOrder,
   getOrders,
   makeOrder,
-} from "../controllers/OrderController";
-import { authMiddleware } from "../middelware/Auth";
+} from "../controllers/OrderController.js";
+import { authMiddleware } from "../middelware/Auth.js";
 
 const OrderRouter = Router();
 

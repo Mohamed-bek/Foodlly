@@ -8,14 +8,14 @@ import {
   GetMainPlats,
   GetPlat,
   UpdatePlat,
-} from "../controllers/PlatController";
-import { authMiddleware } from "../middelware/Auth";
+} from "../controllers/PlatController.js";
+import { authMiddleware } from "../middelware/Auth.js";
 import multer from "multer";
 const upload = multer();
 
 const PlatRouter = Router();
 
-PlatRouter.post("/plat", authMiddleware, upload.single("file"), AddPlat as any);
+PlatRouter.post("/plat", authMiddleware, upload.single("file"), AddPlat);
 PlatRouter.put("/plat/:id", authMiddleware, UpdatePlat);
 PlatRouter.delete("/plat", authMiddleware, DeletePlat);
 PlatRouter.get("/plat/:id", GetPlat);

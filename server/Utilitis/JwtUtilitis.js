@@ -1,7 +1,7 @@
 import { serialize } from "cookie";
 
 // Set a cookie with the token
-export const setTokenCookie = (res: any, token: string) => {
+export const setTokenCookie = (res, token) => {
   const cookie = serialize("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -14,7 +14,7 @@ export const setTokenCookie = (res: any, token: string) => {
 };
 
 // Clear the token cookie (for logout)
-export const clearTokenCookie = (res: any) => {
+export const clearTokenCookie = (res) => {
   const cookie = serialize("token", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

@@ -4,8 +4,8 @@ import {
   GetListOfReservation,
   MakeReservation,
   DeleteReservation,
-} from "../controllers/ReservationController";
-import { authMiddleware } from "../middelware/Auth";
+} from "../controllers/ReservationController.js";
+import { authMiddleware } from "../middelware/Auth.js";
 
 const ReservationRouter = Router();
 
