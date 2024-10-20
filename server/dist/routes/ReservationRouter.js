@@ -9,3 +9,4 @@ ReservationRouter.get("/reservations", Auth_1.authMiddleware, ReservationControl
 ReservationRouter.put("/reservation/:id", Auth_1.authMiddleware, ReservationController_1.ConfirmReservation);
 ReservationRouter.delete("/reservation/:id", Auth_1.authMiddleware, ReservationController_1.DeleteReservation);
 exports.default = ReservationRouter;
+//# sourceMappingURL=ReservationRouter.js.map

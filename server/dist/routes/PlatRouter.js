@@ -17,3 +17,4 @@ PlatRouter.get("/plats", PlatController_1.GetFilterPlats);
 PlatRouter.get("/main-plats", PlatController_1.GetMainPlats);
 PlatRouter.get("/best-selles-plats", PlatController_1.GetBestSellesPlats);
 exports.default = PlatRouter;
+//# sourceMappingURL=PlatRouter.js.map

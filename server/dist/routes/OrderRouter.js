@@ -10,3 +10,4 @@ OrderRouter.get("/order/:id", Auth_1.authMiddleware, OrderController_1.getOrder)
 OrderRouter.put("/order/:id", Auth_1.authMiddleware, OrderController_1.confirmOrder);
 OrderRouter.delete("/order/:id", Auth_1.authMiddleware, OrderController_1.deleteOrder);
 exports.default = OrderRouter;
+//# sourceMappingURL=OrderRouter.js.map

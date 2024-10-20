@@ -91,10 +91,9 @@ exports.confirmOrder = confirmOrder;
 const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        // Find the order by ID and populate the 'plat' field with plate details
         const order = yield Order_1.default.findById(id).populate({
-            path: "order.plat", // Access nested 'plat' field in 'order' array
-            model: "Plat", // Make sure the model name matches your 'Plate' model
+            path: "order.plat",
+            model: "Plat",
         });
         if (!order) {
             res.status(404).json({ message: "Order not found" });
@@ -107,3 +106,4 @@ const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getOrder = getOrder;
+//# sourceMappingURL=OrderController.js.map

@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Logout = exports.LoginAdmin = void 0;
 const cookie_1 = require("cookie");
-const Admin_1 = __importDefault(require("../models/Admin")); // Adjust path accordingly
+const Admin_1 = __importDefault(require("../models/Admin"));
 const LoginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log("register");
@@ -30,10 +30,10 @@ const LoginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const token = admin.generateAuthToken();
         console.log("token", token);
         res.cookie("token", token, {
-            httpOnly: true, // Helps prevent XSS
-            secure: process.env.NODE_ENV === "production", // Set to true only in production
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-            path: "/", // Available on all routes
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+            path: "/",
         });
         res.status(200).json({ message: "Login successful" });
     }
@@ -42,16 +42,6 @@ const LoginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.LoginAdmin = LoginAdmin;
-// res.setHeader(
-//   "Set-Cookie",
-//   serialize("token", token, {
-//     httpOnly: true,
-//     secure: process.env.NODE_ENV === "production",
-//     sameSite: "strict",
-//     maxAge: 60 * 60, // 1 hour
-//     path: "/",
-//   })
-// );
 const Logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.setHeader("Set-Cookie", (0, cookie_1.serialize)("token", "", {
@@ -68,21 +58,4 @@ const Logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.Logout = Logout;
-// interface AuthRequest extends Request {
-//   admin?: any;
-// }
-// export const authMiddleware = (
-//   req: AuthRequest,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   const token = req.header("Authorization")?.replace("Bearer ", "");
-//   if (!token) return res.status(401).send("Access denied. No token provided.");
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-//     req.admin = decoded;
-//     next();
-//   } catch (ex) {
-//     res.status(400).send("Invalid token.");
-//   }
-// };
+//# sourceMappingURL=AdminController.js.map

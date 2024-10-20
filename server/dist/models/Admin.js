@@ -42,3 +42,4 @@ AdminSchema.methods.generateAuthToken = function () {
 };
 const Admin = (0, mongoose_1.model)("Admin", AdminSchema);
 exports.default = Admin;
+//# sourceMappingURL=Admin.js.map

@@ -37,8 +37,8 @@ const AddPlat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             folder: "foodly",
             public_id: `plat_${Date.now()}`,
             overwrite: true,
-            quality: "auto", // Automatically adjust quality
-            fetch_format: "auto", // Automatically select format
+            quality: "auto",
+            fetch_format: "auto",
         }, (error, result) => __awaiter(void 0, void 0, void 0, function* () {
             if (error) {
                 console.error("Error uploading to Cloudinary:", error);
@@ -47,7 +47,6 @@ const AddPlat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                     .json({ error: "Error uploading image to Cloudinary" });
             }
             console.log("Cloudinary upload result: ", result);
-            // Create the plate info object
             const plateInfo = {
                 name,
                 subName,
@@ -62,12 +61,10 @@ const AddPlat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 isMain,
                 isBestSelles,
             };
-            // Save the plate to the database
             const plat = yield Plate_1.default.create(plateInfo);
             console.log("Plate created: ", plat);
             res.status(200).json({ plat });
         }));
-        // Start the upload stream with the file buffer
         uploadStream.end(req.file.buffer);
     }
     catch (error) {
@@ -199,18 +196,15 @@ const UploadImagePlat = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (!file) {
             return res.status(400).json({ error: "No image uploaded" });
         }
-        // Step 1: Get the old image's public_id (if it exists)
         const oldImagePublicId = yield getOldImagePublicId(platId);
-        // Step 2: Delete the old image from Cloudinary if it exists
         if (oldImagePublicId) {
             yield cloudinary_1.v2.uploader.destroy(oldImagePublicId);
             console.log(`Deleted old image: ${oldImagePublicId}`);
         }
-        // Step 3: Upload the new image to Cloudinary
         const result = yield cloudinary_1.v2.uploader.upload(file.tempFilePath, {
-            folder: "portfolio", // Optional: Store images in a folder
-            public_id: `plat_${platId}`, // Use a consistent public_id for replacement
-            overwrite: true, // Ensure the new upload replaces any existing image
+            folder: "portfolio",
+            public_id: `plat_${platId}`,
+            overwrite: true,
         });
         res.json({ url: result.secure_url, public_id: result.public_id });
     }
@@ -220,3 +214,4 @@ const UploadImagePlat = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.UploadImagePlat = UploadImagePlat;
+//# sourceMappingURL=PlatController.js.map
