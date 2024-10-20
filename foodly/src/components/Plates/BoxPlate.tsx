@@ -69,7 +69,7 @@ function BoxPlate({ Plate, animate }: { Plate: IPlate; animate: boolean }) {
         className="bg-secondary overflow-hidden py-2 text-primary block mx-auto px-4  text-[1.2rem] font-bold rounded-2xl transition-[0.6s] hover:bg-white hover:text-secondary"
       >
         <span className={`block ${animate ? "RatingDown" : ""}`}>
-          {Plate.price} DA
+          {Plate?.price} DA
         </span>
       </button>
     </div>

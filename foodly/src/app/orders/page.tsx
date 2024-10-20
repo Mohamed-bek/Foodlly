@@ -147,7 +147,10 @@ function page() {
           </span>
         </div>
         {listOfOrders.map((ord) => (
-          <div className="w-full border-b border-secondary border-solid bg-primary text-secondary flex items-center">
+          <div
+            key={ord._id}
+            className="w-full border-b border-secondary border-solid bg-primary text-secondary flex items-center"
+          >
             <span className="w-[20%] border-r border-secondary border-solid block px-1 py-2 text-center text-[1.15rem]">
               {ord?.name}
             </span>

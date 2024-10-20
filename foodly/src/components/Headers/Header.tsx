@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -12,42 +12,48 @@ interface ILink {
   name: string;
 }
 function Header() {
+  const [title, setTitle] = useState("Loading...");
+
+  useEffect(() => {
+    // Only run this logic on the client.
+    setTitle("Reservations");
+  }, []);
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const { isLoggedIn } = useAuthStore();
   const navRef = useRef<HTMLUListElement>(null);
   const CardRef = useRef<HTMLElement>(null);
   const { order, addQuantity, subQuantity, getTotalAmount } = useOrderStore();
-  const links: ILink[] = isLoggedIn
-    ? [
-        { link: "/", name: "Home" },
-        { link: "/menu", name: "Menu" },
-        { link: "/bookinglist", name: "Reservations" },
-        { link: "/orders", name: "Orders" },
-      ]
-    : [
+  const { isLoggedIn } = useAuthStore();
+  const [links, setLinks] = useState<ILink[]>([
+    { link: "/", name: "Home" },
+    { link: "/menu", name: "Menu" },
+    { link: "/bookinglist", name: "Book" },
+    { link: "/orders", name: "Orders" },
+  ]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setLinks([
         { link: "/", name: "Home" },
         { link: "/menu", name: "Menu" },
         { link: "/booking", name: "Book" },
         { link: "/about", name: "About Us" },
         { link: "/contact", name: "Contact Us" },
-      ];
+      ]);
+    }
+  }, []);
 
   const toggleMenu = () => {
     if (navRef.current) {
-      // If menu is active, add 'exiting' class to li elements
       const liElements = navRef.current.querySelectorAll("li");
       const isActive = navRef.current.classList.contains("active");
 
       if (isActive) {
         liElements.forEach((li) => li.classList.add("exiting"));
-
-        // Wait for the animation to finish before removing 'active' class
         setTimeout(() => {
           navRef.current?.classList.remove("active");
           liElements.forEach((li) => li.classList.remove("exiting"));
-        }, 500); // Match this duration to your CSS transition
+        }, 500);
       } else {
         navRef.current.classList.add("active");
       }

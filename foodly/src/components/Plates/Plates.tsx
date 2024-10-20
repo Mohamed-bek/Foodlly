@@ -34,7 +34,7 @@ function Plates({
     return () => {
       window.removeEventListener("resize", updateRotationAngle); // Cleanup
     };
-  }, [MainPlate._id]);
+  }, [MainPlate?._id]);
 
   // Extend CSSProperties to allow custom CSS variables
   const style: React.CSSProperties & { [key: string]: string } = {

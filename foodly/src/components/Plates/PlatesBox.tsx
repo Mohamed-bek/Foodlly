@@ -43,7 +43,7 @@ function PlatesBox({
             } `}
           >
             {" "}
-            <span className="text-nowrap ">{MainPlate.name}</span>{" "}
+            <span className="text-nowrap ">{MainPlate?.name}</span>{" "}
           </h1>
           <h1
             className={`font-light capitalize -translate-y-10 text-center w-full ${
@@ -59,7 +59,7 @@ function PlatesBox({
           <BoxPlate
             animate={animate}
             Plate={MainPlate}
-            key={MainPlate._id}
+            key={MainPlate?._id}
           />{" "}
         </div>
       </div>
@@ -78,6 +78,7 @@ function PlatesBox({
           ></div>
           {MainPLates.map((plate, i) => (
             <div
+              key={plate._id}
               onClick={() => ChangeMainPlait(i - 1)}
               className="pb-1 z-20 text-[0.9rem] sm:text-[1.4rem] px-1 sm:px-3 w-[25%] overflow-hidden cursor-pointer text-secondary"
             >

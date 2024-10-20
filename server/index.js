@@ -38,12 +38,16 @@ app.use(ReservationRouter);
 app.use(OrderRouter);
 
 // Connect to MongoDB
-mongoose
-  .connect(`${process.env.MONGODB_URI}`)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
 
-// Start server
-app.listen(process.env.PORT, () => {
-  console.log(`Server running at http://localhost:${process.env.PORT}`);
-});
+const connectionDB = async () => {
+  try {
+    await mongoose.connect(`${process.env.MONGODB_URI}`).then(() => {
+      app.listen(process.env.PORT, () => console.log(`${process.env.PORT}`));
+    });
+  } catch (err) {
+    console.log(err);
+    setTimeout(() => connectionDB(), 5000);
+  }
+};
+
+connectionDB();

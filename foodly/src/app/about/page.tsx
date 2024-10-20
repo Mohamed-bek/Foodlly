@@ -16,7 +16,7 @@ const About = () => {
             foodly is the best
           </h1>
           <h2 className="text-[1.7rem] md:text-[2.2rem] text-white mb-4 pl-2">
-            DON'T WAIT!
+            DON&apos;T WAIT!
           </h2>
           <p className="text-lg text-white leading-relaxed pl-2 font-medium">
             Welcome to <span className="text-[1.3rem] font-bold">Foodly</span>,

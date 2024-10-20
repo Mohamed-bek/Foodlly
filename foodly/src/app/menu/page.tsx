@@ -156,7 +156,8 @@ function page() {
         )}
       </div>
       <div className="w-[90%] mx-auto flex justify-center gap-3 gap-y-5 items-center flex-wrap pt-10">
-        {plates.length > 0 && plates.map((plate) => <FoodBox plate={plate} />)}
+        {plates.length > 0 &&
+          plates.map((plate) => <FoodBox key={plate._id} plate={plate} />)}
       </div>
     </div>
   );

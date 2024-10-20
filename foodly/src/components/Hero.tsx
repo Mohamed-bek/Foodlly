@@ -23,49 +23,7 @@ export interface IPlate {
   isBestSelles?: boolean;
 }
 function Hero() {
-  // const [MainPlates, setMainPlates] = useState<IPlate[]>([
-  //   {
-  //     _id: "0",
-  //     name: "LOTEK",
-  //     subName: "PERKEDEL",
-  //     image: "/images/plat1.png",
-  //   },
-  //   {
-  //     _id: "1",
-  //     name: "LOTEK",
-  //     subName: "PERKEDEL",
-  //     image: "/images/plat2.png",
-  //   },
-  //   {
-  //     _id: "2",
-  //     name: "LOTEK",
-  //     subName: "PERKEDEL",
-  //     image: "/images/plat3.png",
-  //   },
-  //   {
-  //     _id: "3",
-  //     name: "LOTEK",
-  //     subName: "PERKEDEL",
-  //     image: "/images/plat4.png",
-  //   },
-  // ]);
   const [MainPlates, setMainPlates] = useState<IPlate[]>([
-    {
-      _id: "0",
-      name: "Salamon",
-      subName: "Salad",
-      image: {
-        url: "/images/plat1.png",
-        public_id: "1",
-      },
-      chef: "Mohamed",
-      price: 1200,
-      likes: 0,
-      dislikes: 0,
-      rating: 5,
-      description:
-        "is a flavorful dish made from ground meat (typically beef or lamb) mixed with aromatic spices, herbs, onions, and sometimes breadcrumbs. The meat mixture is shaped into patties, balls, or skewers and grilled, baked, or pan-fried until juicy and tender. It pairs perfectly with pita bread, hummus, or a drizzle of yogurt sauce for extra flavor.",
-    },
     {
       _id: "1",
       name: "bikin",
@@ -82,38 +40,6 @@ function Hero() {
       description:
         "is a flavorful dish made from ground meat (typically beef or lamb) mixed with aromatic spices, herbs, onions, and sometimes breadcrumbs. The meat mixture is shaped into patties, balls, or skewers and grilled, baked, or pan-fried until juicy and tender. It pairs perfectly with pita bread, hummus, or a drizzle of yogurt sauce for extra flavor.",
     },
-    {
-      _id: "2",
-      name: "chicken",
-      subName: "salad",
-      image: {
-        url: "/images/plat3.png",
-        public_id: "1",
-      },
-      chef: "Mohamed",
-      price: 1500,
-      likes: 187,
-      dislikes: 22,
-      rating: 4.8,
-      description:
-        "is a flavorful dish made from ground meat (typically beef or lamb) mixed with aromatic spices, herbs, onions, and sometimes breadcrumbs. The meat mixture is shaped into patties, balls, or skewers and grilled, baked, or pan-fried until juicy and tender. It pairs perfectly with pita bread, hummus, or a drizzle of yogurt sauce for extra flavor.",
-    },
-    {
-      _id: "2",
-      name: "Grilled",
-      subName: "Meat",
-      image: {
-        url: "/images/plat4.png",
-        public_id: "1",
-      },
-      chef: "Mohamed",
-      price: 3000,
-      likes: 253,
-      dislikes: 11,
-      rating: 4.9,
-      description:
-        "is a flavorful dish made from ground meat (typically beef or lamb) mixed with aromatic spices, herbs, onions, and sometimes breadcrumbs. The meat mixture is shaped into patties, balls, or skewers and grilled, baked, or pan-fried until juicy and tender. It pairs perfectly with pita bread, hummus, or a drizzle of yogurt sauce for extra flavor.",
-    },
   ]);
   const [MainPlate, setMainPlate] = useState(MainPlates[0]);
   useEffect(() => {
@@ -122,10 +48,11 @@ function Hero() {
         const res = await axios.get(
           "https://foodlly-ozos.vercel.app/main-plats"
         );
+        console.log("get main : " + res.data.mainPlats);
         setMainPlates(res.data.mainPlats);
         setMainPlate(res.data.mainPlats[0]);
       } catch (error) {
-        console.log(error);
+        console.log(`Couldn't get main : ` + error);
       }
     };
     GetMainsPlats();
@@ -140,7 +67,7 @@ function Hero() {
           </h2>
           <h1 className="text-[2.2rem] font-bold uppercase text-secondary m-0 -mt-3 text-nowrap md:text-[2.5rem] lg:text-[3.5rem]">
             {" "}
-            Don't Wait !{" "}
+            Don&apos;t Wait !{" "}
           </h1>
         </div>
         <PlatesBox
