@@ -4,64 +4,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const PlatRouter_1 = __importDefault(require("./routes/PlatRouter"));
+const AdminRouter_1 = __importDefault(require("./routes/AdminRouter"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const OrderRouter_1 = __importDefault(require("./routes/OrderRouter"));
+const cloudinary_1 = require("cloudinary");
+const cors_1 = __importDefault(require("cors"));
+const ReservationRouter_1 = __importDefault(require("./routes/ReservationRouter"));
+// Use CORS middleware
+dotenv_1.default.config();
+cloudinary_1.v2.config({
+    cloud_name: process.env.CLOUDE_NAME,
+    api_key: process.env.CLOUD_API_NAME,
+    api_secret: process.env.CLOUDE_KEY,
+});
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 3000;
-app.use((req, res, next) => {
-    console.log(`Received request for: ${req.originalUrl}`);
-    next();
-});
+app.use((0, cors_1.default)({
+    origin: "http://localhost:3000", // Your frontend URL
+    credentials: true, // Enable credentials (cookies) to be sent
+}));
+// Middleware
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, cookie_parser_1.default)());
+app.use(AdminRouter_1.default);
+app.use(PlatRouter_1.default);
+app.use(ReservationRouter_1.default);
+app.use(OrderRouter_1.default);
+// Connect to MongoDB
+mongoose_1.default
+    .connect(`${process.env.MONGODB_URI}`)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.error("MongoDB connection error:", err));
+// Example route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to the Foodly API!" });
+    res.send("Welcome to Foodly API!");
 });
-// Add other routes if needed
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Start server
+app.listen(process.env.PORT, () => {
+    console.log(`Server running at http://localhost:${process.env.PORT}`);
 });
-// import express, { Request, Response } from "express";
-// import mongoose from "mongoose";
-// import dotenv from "dotenv";
-// import PlatRouter from "./routes/PlatRouter";
-// import AdminRouter from "./routes/AdminRouter";
-// import cookieParser from "cookie-parser";
-// import OrderRouter from "./routes/OrderRouter";
-// import { v2 as cloudinary } from "cloudinary";
-// import cors from "cors";
-// import ReservationRouter from "./routes/ReservationRouter";
-// // Use CORS middleware
-// dotenv.config();
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDE_NAME,
-//   api_key: process.env.CLOUD_API_NAME,
-//   api_secret: process.env.CLOUDE_KEY,
-// });
-// const app = express();
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000", // Your frontend URL
-//     credentials: true, // Enable credentials (cookies) to be sent
-//   })
-// );
-// // Middleware
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
-// app.use(AdminRouter);
-// app.use(PlatRouter);
-// app.use(ReservationRouter);
-// app.use(OrderRouter);
-// // Connect to MongoDB
-// mongoose
-//   .connect(`${process.env.MONGODB_URI}`)
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((err) => console.error("MongoDB connection error:", err));
-// // Example route
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Welcome to Foodly API!");
-// });
-// // Start server
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server running at http://localhost:${process.env.PORT}`);
-// });
 // import Admin from "./models/Admin"; // Adjust path accordingly
 // async function createAdmin() {
 //   const admin = new Admin({
