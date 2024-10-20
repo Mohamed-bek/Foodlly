@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "NodeNext",                     // Change to NodeNext
     "moduleResolution": "NodeNext",           // Keep this as NodeNext
-    "rootDir": "./",                          // Set the root directory for input files
+    "rootDir": "./server",                          // Set the root directory for input files
     "outDir": "./dist",                       // Output directory for compiled files
     "esModuleInterop": true,                  // Enables emit interoperability between CommonJS and ES Modules
     "forceConsistentCasingInFileNames": true, // Ensures consistent casing in imports
