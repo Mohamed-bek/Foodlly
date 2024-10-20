@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6", // Specify ECMAScript target version (e.g., es5, es6, esnext)
-    "module": "NodeNext", // Specify module code generation
-    "rootDir": "./", // Specify the root folder within your source files
-    "outDir": "./dist", // Output folder for all emitted files
-    "moduleResolution": "NodeNext", // Use Node's module resolution strategy
-    "esModuleInterop": true, // Enables emit interoperability between CommonJS and ES Modules
-    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in imports
-    "strict": true, // Enable all strict type-checking options
-    "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type
-    "skipLibCheck": true, // Skip type checking of all declaration files
-    "allowJs": true, // Allow JavaScript files to be a part of your program (optional)
-    "sourceMap": true, // Generate corresponding .map files for debugging
-    "declaration": true, // Generate .d.ts files from TypeScript and JavaScript files
-    "removeComments": true // Disable emitting comments in the output files
+    "target": "es6",
+    "module": "NodeNext",                     // Use NodeNext for module generation
+    "rootDir": "./",                          // Set the root directory for input files
+    "outDir": "./dist",                       // Output directory for compiled files
+    "moduleResolution": "NodeNext",           // Use NodeNext for module resolution
+    "esModuleInterop": true,                  // Enables emit interoperability between CommonJS and ES Modules
+    "forceConsistentCasingInFileNames": true, // Ensures consistent casing in imports
+    "strict": true,                           // Enable strict type checking options
+    "noImplicitAny": true,                    // Raise error on expressions and declarations with an implied 'any' type
+    "skipLibCheck": true                      // Skip type checking for all declaration files
   },
-  "include": ["**/*.ts"], // Specify files to include
-  "exclude": ["node_modules", "dist"] // Specify files/folders to exclude
+  "include": [
+    "server.ts",                              // Include your main server file
+    "routes/**/*"                             // Include all files in routes folder
+  ],
+  "exclude": [
+    "node_modules",                           // Exclude node_modules
+    "**/*.spec.ts"                            // Optionally exclude test files
+  ]
 }
