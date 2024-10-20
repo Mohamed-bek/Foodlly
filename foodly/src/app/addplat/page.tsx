@@ -11,8 +11,10 @@ const Page = () => {
   const { isLoggedIn } = useAuthStore();
   const router = useRouter();
   useEffect(() => {
-    !isLoggedIn ? router.push("/login") : null;
-  }, []);
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, [isLoggedIn]);
   const popRef = useRef<HTMLDivElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
   const [plate, setPlate] = useState<IPlate>({
