@@ -40,7 +40,7 @@ function page() {
   const [plates, setPlates] = useState<IPlate[]>([]);
   const GetFilterPlats = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/plats", {
+      const res = await axios.get("https://foodlly-ozos.vercel.app/plats", {
         params: {
           minPrice,
           maxPrice,

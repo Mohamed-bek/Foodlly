@@ -39,9 +39,12 @@ const Page = ({ params }: { params: any }) => {
   useEffect(() => {
     const GetPlate = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/plat/" + params.id, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://foodlly-ozos.vercel.app/plat/" + params.id,
+          {
+            withCredentials: true,
+          }
+        );
         setPlate(res.data.plat);
         setoriginalPlat(res.data.plat);
       } catch (error) {
@@ -56,7 +59,7 @@ const Page = ({ params }: { params: any }) => {
     if (!arePlatesEqual(originalPlat as any, plate)) {
       try {
         const res = await axios.put(
-          "http://localhost:8000/plat/" + params.id,
+          "https://foodlly-ozos.vercel.app/plat/" + params.id,
           plate,
           {
             withCredentials: true,

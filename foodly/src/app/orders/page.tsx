@@ -49,7 +49,7 @@ function page() {
   const ConfirmOrder = async (id: string) => {
     try {
       const res = await axios.put(
-        "http://localhost:8000/order/" + id,
+        "https://foodlly-ozos.vercel.app/order/" + id,
         {},
         { withCredentials: true }
       );
@@ -65,9 +65,12 @@ function page() {
   };
   const CancelOrder = async (id: string) => {
     try {
-      const res = await axios.delete("http://localhost:8000/order/" + id, {
-        withCredentials: true,
-      });
+      const res = await axios.delete(
+        "https://foodlly-ozos.vercel.app/order/" + id,
+        {
+          withCredentials: true,
+        }
+      );
       DeleteRef.current?.classList.add("scale-[1]");
       const UpdatedList = listOfOrders.filter((res) => res._id !== id);
       setListOfOrders(UpdatedList);
@@ -79,7 +82,7 @@ function page() {
   useEffect(() => {
     const GetListOfOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/orders", {
+        const res = await axios.get("https://foodlly-ozos.vercel.app/orders", {
           withCredentials: true,
         });
         setListOfOrders(res.data.orders);

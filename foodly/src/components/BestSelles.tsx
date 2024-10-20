@@ -210,7 +210,9 @@ function BestSelles() {
   useEffect(() => {
     const GetMainsPlats = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/best-selles-plats");
+        const res = await axios.get(
+          "https://foodlly-ozos.vercel.app/best-selles-plats"
+        );
         setPlates(res.data.bestSellesPlats);
       } catch (error) {
         console.log(error);

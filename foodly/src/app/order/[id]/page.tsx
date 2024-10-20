@@ -15,7 +15,7 @@ function page({ params }: { params: any }) {
     const getOrder = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/order/" + params.id,
+          "https://foodlly-ozos.vercel.app/order/" + params.id,
           { withCredentials: true }
         );
         setorder(res.data.order);

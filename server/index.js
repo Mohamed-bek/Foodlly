@@ -43,11 +43,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Example route
-app.get("/", (req, res) => {
-  res.send("Welcome to Foodly API!");
-});
-
 // Start server
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);

@@ -56,7 +56,7 @@ const Page = ({ params }: { params: any }) => {
       // Send the combined data to your endpoint
       setisLoading(true);
       const response = await axios.post(
-        "http://localhost:8000/plat",
+        "https://foodlly-ozos.vercel.app/plat",
         formData,
         {
           headers: {

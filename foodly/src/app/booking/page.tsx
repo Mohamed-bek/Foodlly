@@ -25,7 +25,7 @@ function RestaurantReservation() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/reservation",
+        "https://foodlly-ozos.vercel.app/reservation",
         formData
       );
       popRef.current?.classList.add("scale-[1]");

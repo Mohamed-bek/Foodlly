@@ -58,7 +58,7 @@ function Header() {
     try {
       console.log("Order : ", order);
       const res = await axios.post(
-        "http://localhost:8000/order",
+        "https://foodlly-ozos.vercel.app/order",
         { order, name, location, phone },
         {
           withCredentials: true,

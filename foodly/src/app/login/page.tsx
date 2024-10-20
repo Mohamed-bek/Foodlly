@@ -29,7 +29,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/login",
+        "https://foodlly-ozos.vercel.app/login",
         {
           username,
           password,

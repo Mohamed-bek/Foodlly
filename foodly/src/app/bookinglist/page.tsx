@@ -28,7 +28,7 @@ function page() {
   const ConfirmReservation = async (id: string) => {
     try {
       const res = await axios.put(
-        "http://localhost:8000/reservation/" + id,
+        "https://foodlly-ozos.vercel.app/reservation/" + id,
         {},
         { withCredentials: true }
       );
@@ -45,7 +45,7 @@ function page() {
   const CancelReservation = async (id: string) => {
     try {
       const res = await axios.delete(
-        "http://localhost:8000/reservation/" + id,
+        "https://foodlly-ozos.vercel.app/reservation/" + id,
         { withCredentials: true }
       );
       DeleteRef.current?.classList.add("scale-[1]");
@@ -58,9 +58,12 @@ function page() {
   useEffect(() => {
     const GetListOfReservation = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/reservations", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://foodlly-ozos.vercel.app/reservations",
+          {
+            withCredentials: true,
+          }
+        );
         setlistReservation(res.data.reservations);
         console.log(res.data);
       } catch (error) {

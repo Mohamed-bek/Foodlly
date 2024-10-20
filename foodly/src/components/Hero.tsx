@@ -119,7 +119,9 @@ function Hero() {
   useEffect(() => {
     const GetMainsPlats = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/main-plats");
+        const res = await axios.get(
+          "https://foodlly-ozos.vercel.app/main-plats"
+        );
         setMainPlates(res.data.mainPlats);
         setMainPlate(res.data.mainPlats[0]);
       } catch (error) {
