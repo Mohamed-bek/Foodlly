@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { IPlate } from "../Hero";
 
-function Plates({
+const Plates = ({
   MainPLates,
   MainPlate,
 }: {
   MainPLates: IPlate[];
   MainPlate: IPlate;
-}) {
+}) => {
   const [rotationAngle, setRotationAngle] = useState(0);
   const [screenWidth, setScreenWidth] = useState(0);
 
@@ -68,6 +68,6 @@ function Plates({
       />
     </div>
   );
-}
+};
 
 export default Plates;

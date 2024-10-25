@@ -3,9 +3,9 @@ import React, { useRef, useState } from "react";
 import { IoMdMail } from "react-icons/io";
 import { FaPhoneAlt, FaStore } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import emailjs from "emailjs-com"; // Import EmailJS library
+import emailjs from "emailjs-com";
 
-function Page() {
+const Page = () => {
   const popRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -127,6 +127,6 @@ function Page() {
       </div>
     </div>
   );
-}
+};
 
 export default Page;

@@ -11,7 +11,7 @@ interface ILink {
   link: string;
   name: string;
 }
-function Header() {
+const Header = () => {
   const [title, setTitle] = useState("Loading...");
 
   useEffect(() => {
@@ -194,6 +194,6 @@ function Header() {
       </span>
     </div>
   );
-}
+};
 
 export default Header;

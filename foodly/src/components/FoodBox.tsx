@@ -1,21 +1,14 @@
 import { useAuthStore, useOrderStore } from "@/context/context";
 import Link from "next/link";
 import React, { useRef } from "react";
-import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
-import {
-  RiStarSFill,
-  RiStarHalfSFill,
-  RiStarLine,
-  RiDislikeFill,
-} from "react-icons/ri"; // Import half and empty stars
+import { RiStarSFill, RiStarHalfSFill, RiStarLine } from "react-icons/ri";
 import { IPlate } from "./Hero";
 
-function renderStars(rating: number) {
-  const fullStars = Math.floor(rating); // Whole number stars
-  const hasHalfStar = rating % 1 >= 0.5; // Check if half-star needed
-  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Calculate remaining empty stars
-
+const RenderStars = (rating: number) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
   return (
     <div className="flex justify-center items-center">
       {Array.from({ length: fullStars }, (_, i) => (
@@ -27,9 +20,9 @@ function renderStars(rating: number) {
       ))}
     </div>
   );
-}
+};
 
-function FoodBox({ plate }: { plate: IPlate }) {
+const FoodBox = ({ plate }: { plate: IPlate }) => {
   const { isLoggedIn } = useAuthStore();
   const { addQuantity, order } = useOrderStore();
   const playAudio = () => {
@@ -66,7 +59,7 @@ function FoodBox({ plate }: { plate: IPlate }) {
         </h1>
         <p className="text-[0.9rem] font-medium mb-2">{plate?.subName}</p>
         <div className="flex justify-center items-center relative font-medium text-[1.7rem]">
-          {renderStars(plate?.rating as number)}
+          {RenderStars(plate?.rating as number)}
         </div>
         {isLoggedIn && (
           <button className="px-5 border border-black border-solid absolute bottom-0 left-1/2 -translate-x-1/2 text-nowrap translate-y-1/2 py-2 mt-2 bg-secondary text-primary text-[1.3rem] cursor-pointer rounded-3xl">
@@ -89,6 +82,6 @@ function FoodBox({ plate }: { plate: IPlate }) {
       </div>
     </div>
   );
-}
+};
 
 export default FoodBox;

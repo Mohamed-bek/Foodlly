@@ -4,7 +4,7 @@ import { IPlate } from "../Hero";
 import BoxPlate from "./BoxPlate";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-function PlatesBox({
+const PlatesBox = ({
   MainPLates,
   MainPlate,
   setMainPlate,
@@ -12,7 +12,7 @@ function PlatesBox({
   MainPLates: IPlate[];
   MainPlate: IPlate;
   setMainPlate: any;
-}) {
+}) => {
   const [index, setindex] = useState<number>(0);
   const [left, setleft] = useState<number>(+index * 25);
   const ChangeMainPlait = (ind: number) => {
@@ -102,6 +102,6 @@ function PlatesBox({
       </div>
     </div>
   );
-}
+};
 
 export default PlatesBox;

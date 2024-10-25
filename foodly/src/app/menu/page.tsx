@@ -9,7 +9,7 @@ import { MdAdd } from "react-icons/md";
 import { useAuthStore } from "@/context/context";
 import Link from "next/link";
 
-function page() {
+const Page = () => {
   const { isLoggedIn } = useAuthStore();
   const spanRef = useRef<HTMLSpanElement>(null);
   const [minPrice, setMinPrice] = useState<number | "">();
@@ -161,9 +161,6 @@ function page() {
       </div>
     </div>
   );
-}
+};
 
-export default page;
-function AuthState(): { isLoggedIn: any } {
-  throw new Error("Function not implemented.");
-}
+export default Page;

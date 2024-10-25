@@ -1,5 +1,4 @@
 "use client";
-import { IPlate } from "@/components/Hero";
 import { IOrderItem, useAuthStore } from "@/context/context";
 import axios from "axios";
 import Link from "next/link";
@@ -35,7 +34,7 @@ function formatDate(dateString: string): string {
   return `${dayName} ${hours}:${minutes}`;
 }
 
-function page() {
+const Page = () => {
   const { isLoggedIn } = useAuthStore();
   const router = useRouter();
   useEffect(() => {
@@ -203,6 +202,6 @@ function page() {
       </div>
     </div>
   );
-}
+};
 
-export default page;
+export default Page;

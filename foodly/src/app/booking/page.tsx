@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 
-function RestaurantReservation() {
+const RestaurantReservation = () => {
   const initialValue = {
     name: "",
     email: "",
@@ -153,6 +153,6 @@ function RestaurantReservation() {
       </div>
     </div>
   );
-}
+};
 
 export default RestaurantReservation;

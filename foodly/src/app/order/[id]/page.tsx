@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-function page({ params }: { params: any }) {
+const Page = ({ params }: { params: any }) => {
   const { isLoggedIn } = useAuthStore();
   const router = useRouter();
   useEffect(() => {
@@ -60,6 +60,6 @@ function page({ params }: { params: any }) {
       </div>
     </div>
   );
-}
+};
 
-export default page;
+export default Page;

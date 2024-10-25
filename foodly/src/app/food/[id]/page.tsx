@@ -9,7 +9,7 @@ const arePlatesEqual = (
   plate1: IPlate | null,
   plate2: IPlate | null
 ): boolean => {
-  if (!plate1 || !plate2) return false; // Return false if either is null
+  if (!plate1 || !plate2) return false;
   return JSON.stringify(plate1) === JSON.stringify(plate2);
 };
 

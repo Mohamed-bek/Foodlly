@@ -22,7 +22,7 @@ export interface IPlate {
   isMain?: boolean;
   isBestSelles?: boolean;
 }
-function Hero() {
+const Hero = () => {
   const [MainPlates, setMainPlates] = useState<IPlate[]>([
     {
       _id: "1",
@@ -79,6 +79,6 @@ function Hero() {
       <Plates MainPLates={MainPlates} MainPlate={MainPlate} />
     </div>
   );
-}
+};
 
 export default Hero;

@@ -4,11 +4,10 @@ import { IPlate } from "../Hero";
 import { AiFillLike, AiFillDislike, AiFillStar } from "react-icons/ai";
 import { useOrderStore } from "@/context/context";
 
-function BoxPlate({ Plate, animate }: { Plate: IPlate; animate: boolean }) {
+const BoxPlate = ({ Plate, animate }: { Plate: IPlate; animate: boolean }) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
 
-  // Increment function to smoothly increase numbers
   const incrementCounter = (
     target: number,
     setValue: React.Dispatch<React.SetStateAction<number>>
@@ -74,6 +73,6 @@ function BoxPlate({ Plate, animate }: { Plate: IPlate; animate: boolean }) {
       </button>
     </div>
   );
-}
+};
 
 export default BoxPlate;

@@ -15,7 +15,7 @@ interface IReservation {
   isConfirmed: boolean;
 }
 
-function page() {
+const BookingList = () => {
   const DeleteRef = useRef<HTMLDivElement>(null);
   const ConfirmRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuthStore();
@@ -192,6 +192,6 @@ function page() {
       </div>
     </div>
   );
-}
+};
 
-export default page;
+export default BookingList;
