@@ -20,9 +20,12 @@ const BookingList = () => {
   const ConfirmRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuthStore();
   const router = useRouter();
-  useEffect(() => {
+  const IsLoggedInFunc = () => {
     !isLoggedIn ? router.push("/login") : null;
-  }, []);
+  };
+  useEffect(() => {
+    IsLoggedInFunc;
+  }, [isLoggedIn]);
 
   const [listReservation, setlistReservation] = useState<IReservation[]>([]);
   const ConfirmReservation = async (id: string) => {

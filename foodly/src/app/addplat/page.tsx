@@ -13,7 +13,7 @@ const Page = () => {
     if (!isLoggedIn) {
       router.push("/login");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, router]);
   const [isLoading, setisLoading] = useState<boolean>(false);
 
   const popRef = useRef<HTMLDivElement>(null);
